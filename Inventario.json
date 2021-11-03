@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Health Potion",
+    "price": "50gp",
+    "stock": 8
+  }
+  ,
+  {
+    "name": "Mana Potion",
+    "price": "70gp",
+    "stock": 3
+  }
+  ,
+  {
+    "name": "Leg",
+    "price": "700gp",
+    "stock": 1
+  }
+  ,
+  {
+    "name": "Wooloo",
+    "price": "7cp",
+    "stock": 300
+  }
+  ,
+  {
+    "name": "Spice",
+    "price": "7sp",
+    "stock": 30
+  }
+  
+]
