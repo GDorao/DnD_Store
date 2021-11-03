@@ -1,19 +1,19 @@
 [
   {
-    "name": "Health Potion",
+    "name": "Poción de vida",
     "price": "50gp",
     "stock": 8
   }
   ,
   {
-    "name": "Mana Potion",
+    "name": "Poción de maná",
     "price": "70gp",
     "stock": 3
   }
   ,
   {
-    "name": "Leg",
-    "price": "700gp",
+    "name": "Colgante Lunar",
+    "price": "200gp",
     "stock": 1
   }
   ,
@@ -28,5 +28,6 @@
     "price": "7sp",
     "stock": 30
   }
+  
   
 ]

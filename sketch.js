@@ -5,31 +5,34 @@ let totalPriceGP=0
 let totalPriceSP=0
 let totalPriceCP=0
 let finalPrice="Total:"
-
-
+let offsetX=100
+let offsetY=200
+let logo
 
 async function preload(){
 
-  inventoryJSON=loadJSON('Inventario.json')
+  inventoryJSON=loadJSON('assets/Inventario.json')
   //await virtual
   while(inventoryJSON[0]==undefined){await sleep(1)} //mientras no se haya cargado el json
-  loadInventory(inventoryJSON)
-
+  
 }
 
 
 
 function setup() {
+  loadInventory(inventoryJSON)
+  var canvas = createCanvas(windowWidth,max(offsetY+inventory.length*50+200,windowHeight-1));
 
-  var canvas = createCanvas(windowWidth,windowHeight-1);
+  logo=loadImage("assets/DragonDorado.png")
+  
   textAlign(LEFT, TOP);
 
   butCheckOut = createButton('Checkout');
-  butCheckOut.position(600, 450);
+  butCheckOut.position(offsetX+600, height-50);
   butCheckOut.mousePressed(saveJ)
 
   CheckExpress = createCheckbox('Express Delivery (30gp)', false);
-  CheckExpress.position(400, 450);
+  CheckExpress.position(offsetX+400, height-50);
   CheckExpress.changed(()=>{
     if(CheckExpress.checked()){ChangeCartCost("30gp", "add")}
     else{ChangeCartCost("30gp", "remove")}
@@ -41,22 +44,25 @@ function setup() {
 
 function draw() {
 
-  background(200);  
+  background(220);  
 
+  imageMode(CENTER);
+  image(logo,windowWidth/2,90)
 
-  text("Item", 0, 0);
-  text("Price", 200, 0);
-  text("Qty", 400, 0);
-  text("Cart", 600, 0);
+  text("Item", offsetX+0, offsetY+0);
+  text("Price", offsetX+200, offsetY+0);
+  text("Qty", offsetX+400, offsetY+0);
+  text("Cart", offsetX+600, offsetY+0);
+  text("Cost", offsetX+700, offsetY+0);
 
   
   
   for (let i=0; i<inventory.length;i++){//mostrar
-    inventory[i].show(0,i*50+100)
+    inventory[i].show(offsetX+0,offsetY+i*50+100)
   }
 
   
-  text(finalPrice, 600, 400);
+  text(finalPrice, offsetX+600, height-80);
 
   
 
@@ -84,7 +90,7 @@ function loadInventory(inventoryJSON){
       inventory.push(new Item(inventoryJSON[i].name, inventoryJSON[i].price, inventoryJSON[i].stock))
 
       butP = createButton('->');
-      butP.position(500, i*50+90);
+      butP.position(offsetX+500, offsetY+i*50+90);
       butP.mousePressed(()=>{
         if(inventory[i].stock>0){
           inventory[i].stock--
@@ -95,7 +101,7 @@ function loadInventory(inventoryJSON){
 
 
       butL = createButton('<-');
-      butL.position(500, i*50+110);
+      butL.position(offsetX+500, offsetY+i*50+110);
       butL.mousePressed(()=>{
         if(inventory[i].inCart>0){
           inventory[i].stock++
